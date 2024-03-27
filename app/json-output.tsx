@@ -1,8 +1,8 @@
 import { Code } from "@/components/code";
-import { useCommands } from "./commands";
+import { useCommandStore } from "./commands";
 
 export function CommandsJSONPreview() {
-  const commands = useCommands((state: any) => state.commands);
+  const commands = useCommandStore((state: any) => state.commands);
 
   return (
     <section className="w-full">
