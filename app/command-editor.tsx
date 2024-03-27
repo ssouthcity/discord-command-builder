@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@/components/button";
 import { useCommands } from "./commands";
 
 export function CommandEditor() {
@@ -7,7 +8,7 @@ export function CommandEditor() {
 
   return (
     <section className="w-full">
-      <button onClick={addCommand}>Add Command</button>
+      <Button onClick={addCommand}>Add Command</Button>
     </section>
   )
 }
