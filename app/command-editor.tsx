@@ -17,19 +17,27 @@ export function CommandEditor() {
   return (
     <section className="w-full">
       <Stack size="small">
+
         <Label htmlFor="name">Name</Label>
         <Input name="name" value={command.name} onChange={(e) => renameCommand(e.currentTarget.value)} />
+
         <Divider />
+
         <Label htmlFor="name">Type</Label>
         <Select value={command.type} onChange={(e) => changeCommandType(parseInt(e.currentTarget.value))}>
           <option value={ApplicationCommandType.CHAT_INPUT}>Chat</option>
           <option value={ApplicationCommandType.USER}>User</option>
           <option value={ApplicationCommandType.MESSAGE}>Message</option>
         </Select>
+
         <Divider />
+
         <Label htmlFor="name">Description</Label>
         <Input value={command.description} onChange={(e) => changeCommandDescription(e.currentTarget.value)} />
-        {/*<Button onClick={addCommand}>Add Command</Button>*/}
+
+        <Divider />
+
+        <Button onClick={() => ({})}>Add Command</Button>
       </Stack>
     </section >
   )
