@@ -17,7 +17,7 @@ export function Stack(props: Props) {
   };
 
   return (
-    <div className={`flex flex-col ${gaps[size]}`} >
+    <div className={`flex flex-col justify-items-start items-start ${gaps[size]}`} >
       {children}
     </div >
   )

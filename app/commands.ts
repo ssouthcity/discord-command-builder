@@ -19,32 +19,16 @@ const newCommand: () => ApplicationCommand = () => ({
 });
 
 export type ApplicationCommandStore = {
-  commands: ApplicationCommand[]
-  addCommand: () => void
-  renameCommand: (idx: number, name: string) => void
-  changeCommandType: (idx: number, type: ApplicationCommandType) => void
-  changeCommandDescription: (idx: number, description: string) => void
+  command: ApplicationCommand
+  renameCommand: (name: string) => void
+  changeCommandType: (type: ApplicationCommandType) => void
+  changeCommandDescription: (description: string) => void
 }
 
 export const useCommandStore = create<ApplicationCommandStore>((set) => ({
+  command: newCommand(),
   commands: [],
-  addCommand: () => set((state) => ({ commands: [...state.commands, newCommand()] })),
-  renameCommand: (idx, name) =>
-    set((state) => ({
-      commands: state.commands.map((cmd, i) =>
-        i === idx ? { ...cmd, name } : cmd
-      ),
-    })),
-  changeCommandType: (idx, type) =>
-    set((state) => ({
-      commands: state.commands.map((cmd, i) =>
-        i === idx ? { ...cmd, type } : cmd
-      ),
-    })),
-  changeCommandDescription: (idx, description) =>
-    set((state) => ({
-      commands: state.commands.map((cmd, i) =>
-        i === idx ? { ...cmd, description } : cmd
-      ),
-    })),
+  renameCommand: (name) => set((state) => ({ command: { ...state.command, name } })),
+  changeCommandType: (type) => set((state) => ({ command: { ...state.command, type } })),
+  changeCommandDescription: (description) => set((state) => ({ command: { ...state.command, description } })),
 }));
