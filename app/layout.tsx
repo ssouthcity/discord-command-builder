@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/react";
 import { Open_Sans } from "next/font/google";
 import "./globals.css";
 
@@ -19,6 +20,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className + " bg-zinc-700 text-zinc-100 px-32 py-16"}>{children}</body>
       <SpeedInsights />
+      <Analytics />
     </html>
   );
 }
