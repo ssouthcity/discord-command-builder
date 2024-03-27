@@ -1,3 +1,4 @@
+import { Code } from "@/components/code";
 import { useCommands } from "./commands";
 
 export function CommandsJSONPreview() {
@@ -5,11 +6,9 @@ export function CommandsJSONPreview() {
 
   return (
     <section className="w-full">
-      <pre>
-        <code>
-          {JSON.stringify(commands, null, 4)}
-        </code>
-      </pre>
+      <Code>
+        {JSON.stringify(commands, null, 4)}
+      </Code>
     </section>
   )
 }
