@@ -1,19 +1,50 @@
 import { create } from "zustand";
 
-enum ApplicationCommandTypes {
+export type ApplicationCommand = {
+  name: string
+  type: ApplicationCommandType
+  description: string
+}
+
+export enum ApplicationCommandType {
   CHAT_INPUT = 1,
   USER = 2,
   MESSAGE = 3,
 }
 
-const newCommand = () => ({
+const newCommand: () => ApplicationCommand = () => ({
   name: "my_command",
-  type: ApplicationCommandTypes.CHAT_INPUT,
+  type: ApplicationCommandType.CHAT_INPUT,
   description: "this is an example command",
-  options: [],
 });
 
-export const useCommands = create((set) => ({
+export type ApplicationCommandStore = {
+  commands: ApplicationCommand[]
+  addCommand: () => void
+  renameCommand: (idx: number, name: string) => void
+  changeCommandType: (idx: number, type: ApplicationCommandType) => void
+  changeCommandDescription: (idx: number, description: string) => void
+}
+
+export const useCommandStore = create<ApplicationCommandStore>((set) => ({
   commands: [],
-  addCommand: () => set((state: any) => ({ commands: [...state.commands, newCommand()] })),
+  addCommand: () => set((state) => ({ commands: [...state.commands, newCommand()] })),
+  renameCommand: (idx, name) =>
+    set((state) => ({
+      commands: state.commands.map((cmd, i) =>
+        i === idx ? { ...cmd, name } : cmd
+      ),
+    })),
+  changeCommandType: (idx, type) =>
+    set((state) => ({
+      commands: state.commands.map((cmd, i) =>
+        i === idx ? { ...cmd, type } : cmd
+      ),
+    })),
+  changeCommandDescription: (idx, description) =>
+    set((state) => ({
+      commands: state.commands.map((cmd, i) =>
+        i === idx ? { ...cmd, description } : cmd
+      ),
+    })),
 }));
