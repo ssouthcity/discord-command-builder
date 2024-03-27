@@ -14,7 +14,7 @@ export function Code(props: React.PropsWithChildren) {
   }
 
   return (
-    <pre className="bg-zinc-800 text-zinc-300 p-8 m-4 rounded relative">
+    <pre className="bg-zinc-800 text-zinc-300 p-8 rounded overflow-hidden relative">
       <button onClick={copyToClipboard} className="absolute top-4 right-4">
         {copyStatus} 📋
       </button>
